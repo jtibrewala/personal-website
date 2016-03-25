@@ -1,0 +1,3 @@
+# Files to ignore
+tempfile.txt
+*.zip
