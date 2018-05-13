@@ -350,9 +350,14 @@ ul#nav li.current a { color: #B70101; }
   	-webkit-animation: html5 2s ease;
 }
 .fifty {
-  	width: 50%;
-  	-moz-animation: jquery 2s ease;
-  	-webkit-animation: jquery 2s ease;
+    width: 50%;
+    -moz-animation: jquery 2s ease;
+    -webkit-animation: jquery 2s ease;
+}
+.twenty {
+    width: 20%;
+    -moz-animation: jquery 2s ease;
+    -webkit-animation: jquery 2s ease;
 }
 
 @-moz-keyframes ninety {
@@ -379,6 +384,10 @@ ul#nav li.current a { color: #B70101; }
   0%   { width: 0px;  }
   100% { width: 50%;  }
 }
+@-moz-keyframes twenty {
+  0%   { width: 0px;  }
+  100% { width: 20%;  }
+}
 
 @-webkit-keyframes ninety {
   0%   { width: 0px;  }
@@ -403,6 +412,10 @@ ul#nav li.current a { color: #B70101; }
 @-webkit-keyframes fifty {
   0%   { width: 0px;  }
   100% { width: 50%;  }
+}
+@-webkit-keyframes twenty {
+  0%   { width: 0px;  }
+  100% { width: 20%;  }
 }
 
 /* ------------------------------------------------------------------ */
