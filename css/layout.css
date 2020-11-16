@@ -354,6 +354,11 @@ ul#nav li.current a { color: #B70101; }
     -moz-animation: jquery 2s ease;
     -webkit-animation: jquery 2s ease;
 }
+.forty {
+    width: 40%;
+    -moz-animation: jquery 2s ease;
+    -webkit-animation: jquery 2s ease;
+}
 .twenty {
     width: 20%;
     -moz-animation: jquery 2s ease;
