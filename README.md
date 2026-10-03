@@ -60,4 +60,56 @@ Contact details and social links appear in two places (hero and footer), so upda
 
 ## Deployment
 
-Because the site is fully static, it can be hosted anywhere that serves files — GitHub Pages, Netlify, Cloudflare Pages, S3, or any web server. Publish the folder contents as-is, with `index.html` at the root.
+The site is fully static (HTML, CSS, images, a few lines of inline JS) and all
+asset paths are **relative**, so it runs under any path — including a `~user`
+subdirectory — with no build step.
+
+### Primary target: UW–Madison CS web space (`pages.cs.wisc.edu/~jaideep`)
+
+Files are served from your CS home directory's public web folder (historically
+`~/public_html`; some department setups use `~/web` — check which exists).
+
+```sh
+# From this project folder, copy the site into your CS web directory over SSH.
+# Replace the host with your current CS login host if different.
+scp -r index.html style.css images \
+    jaideep@best-linux.cs.wisc.edu:~/public_html/
+```
+
+Or, if you have AFS/SSH access and want to pull straight from GitHub on the CS
+machine:
+
+```sh
+ssh jaideep@best-linux.cs.wisc.edu
+cd ~/public_html                     # or ~/web
+git clone https://github.com/jtibrewala/personal-website.git .
+# later updates:
+git pull
+```
+
+Then set readable permissions so the web server can serve the files:
+
+```sh
+chmod -R o+r ~/public_html
+find ~/public_html -type d -exec chmod o+x {} \;
+```
+
+Visit **https://pages.cs.wisc.edu/~jaideep/** to confirm. The `og:url`,
+`og:image`, and `twitter:image` meta tags are already set to this absolute URL
+so link previews (LinkedIn, WhatsApp, Twitter) resolve the profile photo.
+
+> If you ever move to a different base URL, update those three absolute URLs in
+> the `<head>` of `index.html`.
+
+### Alternative hosts
+
+Any static host works — GitHub Pages, Netlify, Cloudflare Pages, or S3. Publish
+the folder contents as-is with `index.html` at the root, and update the three
+absolute meta-tag URLs in `index.html` to match the new domain.
+
+### Local preview
+
+```sh
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
