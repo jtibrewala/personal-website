@@ -1019,6 +1019,22 @@ blockquote {
   box-shadow: var(--shadow-sm);
 }
 
+/* Bigger Dilbert in landscape orientation (phones/tablets held sideways,
+   and short-but-wide viewports) — use more of the available width. */
+@media (orientation: landscape) {
+  .dilbert-img {
+    width: 100%;
+    max-width: 900px;
+  }
+}
+
+/* On landscape phones/tablets specifically, let it span the full container. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .dilbert-img {
+    max-width: 100%;
+  }
+}
+
 /* ============================================================
    Footer
    ============================================================ */
