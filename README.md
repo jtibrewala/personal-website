@@ -5,16 +5,15 @@ A static, single-page personal website for Jaideep Tibrewala — Fintech Product
 ## Project structure
 
 ```
-personal-homepage/
+personal-website/
 ├── index.html      # All page content and the inline JS
 ├── style.css       # All styling (design tokens, layout, components, responsive rules)
-├── images/
-│   ├── profilepic.jpg     # Hero avatar
-│   ├── favicon.png
-│   ├── chicagobooth.png   # Education logos
-│   ├── wisc.jpg
-│   └── dilbert.gif        # Closing comic strip
-└── .claude/        # Claude Code settings for this project
+└── images/
+    ├── profilepic.jpg     # Hero avatar
+    ├── favicon.png
+    ├── chicagobooth.png   # Education logos
+    ├── wisc.jpg
+    └── dilbert.gif        # Closing comic strip
 ```
 
 ## Running locally
@@ -28,7 +27,7 @@ python3 -m http.server 8000
 
 ## Page sections
 
-Hero → About → Experience → Education → Certifications → Writing → Recommendations → Dilbert comic → Footer/Contact.
+Hero → About → Skills → AI &amp; N8N Automations → Experience → Education → Certifications → Writing → Resources → Recommendations → Dilbert comic → Footer/Contact.
 
 Each section in `<main>` is a `<section id="..." class="section collapsible-section">`; alternate sections use `section-alt` for the tinted background.
 
