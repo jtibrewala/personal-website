@@ -28,7 +28,7 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">AI &amp; Projects</a></li>
+        <li><a href="#projects">AI &amp; N8N Automations</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#certifications">Certifications</a></li>
@@ -153,38 +153,53 @@
       </div>
     </section>
 
-    <!-- AI & Projects -->
+    <!-- AI & N8N Automations -->
     <section id="projects" class="section section-alt collapsible-section" data-open="false">
       <div class="container">
-        <h2 class="section-title section-trigger">AI &amp; Projects <span class="section-chevron" aria-hidden="true"></span></h2>
+        <h2 class="section-title section-trigger">AI &amp; N8N Automations <span class="section-chevron" aria-hidden="true"></span></h2>
         <div class="section-body">
-        <p class="projects-intro">A sample of things I've been building hands-on — exploring where AI, automation, and fintech meet. Code and experiments live on <a href="https://github.com/jtibrewala" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p class="projects-intro">Production AI-native automations I run on a self-hosted <a href="https://n8n.io" target="_blank" rel="noopener">n8n</a> instance — agentic, LLM-driven workflows that turn messy inputs into useful, scheduled output. A few of my favourites below; more experiments live on <a href="https://github.com/jtibrewala" target="_blank" rel="noopener">GitHub</a>.</p>
         <div class="projects-grid">
 
           <div class="project-card">
-            <div class="project-head">
-              <h3 class="project-title">syncMyEtrade</h3>
+            <div class="project-head project-head--stacked">
+              <h3 class="project-title">Weekly Portfolio Intelligence</h3>
               <span class="project-badge">AI · Automation</span>
             </div>
-            <p class="project-desc">A personal portfolio intelligence tool: syncs stock holdings into a Google Sheet hub and emails a weekly AI digest — period-based performance signals, per-ticker news, and LLM-generated commentary to spot churn and diversification candidates.</p>
+            <p class="project-desc">Every week, syncs my US-equity holdings and benchmarks from a Google Sheet, computes multi-period performance signals (1w/1m/3m/6m), pulls company news for flagged tickers, and uses Gemini to write a grounded commentary email — surfacing persistent laggards, concentration risks, and churn candidates. Not advice; signals for attention.</p>
             <div class="project-stack">
               <span class="project-tech">n8n</span>
               <span class="project-tech">Gemini</span>
               <span class="project-tech">Google Sheets API</span>
-              <span class="project-tech">Node.js</span>
+              <span class="project-tech">Finnhub</span>
             </div>
           </div>
 
           <div class="project-card">
             <div class="project-head">
-              <h3 class="project-title">Selfie Popup Simulator</h3>
-              <span class="project-badge">Browser Extension</span>
+              <h3 class="project-title">Automated SEO Report</h3>
+              <span class="project-badge">AI Agents · SEO</span>
             </div>
-            <p class="project-desc">A Chrome (Manifest V3) extension experiment — a draggable, keyboard-accessible camera overlay. A quick build to pressure-test MV3 constraints, CSP, and extension UX patterns.</p>
+            <p class="project-desc">A ~50-node pipeline that pulls Google Search Console, Google Analytics, and PageSpeed Insights data (current vs. previous period), then runs two Gemini agents — one Marketing, one Technical — to generate audience-specific insight reports, rendered to HTML and emailed to the right stakeholders automatically.</p>
             <div class="project-stack">
-              <span class="project-tech">Chrome MV3</span>
-              <span class="project-tech">TypeScript</span>
-              <span class="project-tech">Vite</span>
+              <span class="project-tech">n8n</span>
+              <span class="project-tech">Gemini Agents</span>
+              <span class="project-tech">Search Console</span>
+              <span class="project-tech">PageSpeed API</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-head">
+              <h3 class="project-title">Newsletter Intelligence (Map-Reduce)</h3>
+              <span class="project-badge">AI · Summarization</span>
+            </div>
+            <p class="project-desc">Turns a daily flood of newsletters into one readable digest. Fetches emails per source from Gmail, cleans and batches them by token budget, then runs a map-reduce with Gemini — summarizing each batch, then composing a single text-to-speech-friendly HTML digest with strict grounding to avoid hallucination.</p>
+            <div class="project-stack">
+              <span class="project-tech">n8n</span>
+              <span class="project-tech">Gemini</span>
+              <span class="project-tech">LangChain</span>
+              <span class="project-tech">Gmail API</span>
             </div>
           </div>
 
