@@ -1,12 +1,14 @@
 # Personal Homepage
 
-A static, single-page personal website for Jaideep Tibrewala — Fintech / AI Product Leader. It presents career history, education, certifications, writing and recommendations. There is no build step, framework or backend: just one self-contained `index.html` with inline CSS and a few lines of vanilla JavaScript.
+A static, single-page personal website for Jaideep Tibrewala — Fintech / AI Product Leader. It presents career history, education, certifications, writing and recommendations. There is no build step, framework or backend: just an `index.html`, a `style.css` and a small `script.js` of vanilla JavaScript.
 
 ## Project structure
 
 ```
 personal-website/
-├── index.html      # Everything: page content, inline CSS and inline JS
+├── index.html      # Page markup and content
+├── style.css       # All styling (design tokens, layout, animations, media queries)
+├── script.js       # Behaviour (scroll-reveal, typing, counters, etc.)
 └── images/
     ├── profilepic.jpg     # Hero avatar
     ├── favicon.png
@@ -15,9 +17,8 @@ personal-website/
     └── dilbert.gif        # Closing comic strip
 ```
 
-`index.html` is fully self-contained — the styles live in an inline `<style>`
-block and the behaviour in an inline `<script>` block. There is no separate
-CSS or JS file to keep in sync.
+`index.html` links `style.css` in the `<head>` and `script.js` just before
+`</body>`, both via relative paths.
 
 ## Running locally
 
@@ -38,9 +39,9 @@ sections use `section-alt` for the tinted background.
 ## Design and behaviour notes
 
 - **Theming:** colours, fonts, radii, shadows and max width are CSS custom
-  properties in `:root` at the top of the inline `<style>` block. Change the
-  accent colour (`--color-accent`, with `--color-accent-2` for gradients) there
-  to re-theme the site.
+  properties in `:root` at the top of `style.css`. Change the accent colour
+  (`--color-accent`, with `--color-accent-2` for gradients) there to re-theme
+  the site.
 - **Fonts:** Inter and Lora, loaded from Google Fonts.
 - **Dark mode:** a `@media (prefers-color-scheme: dark)` block overrides the
   colour tokens, so the site adapts to the visitor's OS theme automatically.
@@ -76,14 +77,14 @@ Contact details and social links appear in two places (hero and footer), so upda
 
 ## Notes
 
-- The nav hides trailing links at narrower widths via `.nav-links li:nth-child(n+N)` rules in the inline `<style>`; adjust these if you add or reorder nav items.
+- The nav hides trailing links at narrower widths via `.nav-links li:nth-child(n+N)` rules in `style.css`; adjust these if you add or reorder nav items.
 - Open Graph `og:image` uses an absolute URL. Some link-preview scrapers need the full URL, which is already set for the CS web space (see below).
 
 ## Deployment
 
-The site is fully static (one `index.html` plus images) and all asset paths are
-**relative**, so it runs under any path — including a `~user` subdirectory —
-with no build step.
+The site is fully static (`index.html`, `style.css`, `script.js` plus images)
+and all asset paths are **relative**, so it runs under any path — including a
+`~user` subdirectory — with no build step.
 
 ### Primary target: UW–Madison CS web space (`pages.cs.wisc.edu/~jaideep`)
 
@@ -93,7 +94,7 @@ Files are served from your CS home directory's public web folder (historically
 ```sh
 # From this project folder, copy the site into your CS web directory over SSH.
 # Replace the host with your current CS login host if different.
-scp -r index.html images \
+scp -r index.html style.css script.js images \
     jaideep@best-linux.cs.wisc.edu:~/public_html/
 ```
 
