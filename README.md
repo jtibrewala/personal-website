@@ -1,13 +1,12 @@
 # Personal Homepage
 
-A static, single-page personal website for Jaideep Tibrewala — Fintech Product Leader. It presents career history, education, certifications, writing and recommendations. There is no build step, framework or backend: just HTML, CSS and a few lines of vanilla JavaScript.
+A static, single-page personal website for Jaideep Tibrewala — Fintech / AI Product Leader. It presents career history, education, certifications, writing and recommendations. There is no build step, framework or backend: just one self-contained `index.html` with inline CSS and a few lines of vanilla JavaScript.
 
 ## Project structure
 
 ```
 personal-website/
-├── index.html      # All page content and the inline JS
-├── style.css       # All styling (design tokens, layout, components, responsive rules)
+├── index.html      # Everything: page content, inline CSS and inline JS
 └── images/
     ├── profilepic.jpg     # Hero avatar
     ├── favicon.png
@@ -15,6 +14,10 @@ personal-website/
     ├── wisc.jpg
     └── dilbert.gif        # Closing comic strip
 ```
+
+`index.html` is fully self-contained — the styles live in an inline `<style>`
+block and the behaviour in an inline `<script>` block. There is no separate
+CSS or JS file to keep in sync.
 
 ## Running locally
 
@@ -27,21 +30,40 @@ python3 -m http.server 8000
 
 ## Page sections
 
-Hero → About → Skills → AI &amp; N8N Automations → Experience → Education → Certifications → Writing → Resources → Recommendations → Dilbert comic → Footer/Contact.
+Hero → About → Skills → Projects → Experience → Education → Certifications → Writing → Resources → Recommendations → Dilbert comic → Footer/Contact.
 
-Each section in `<main>` is a `<section id="..." class="section collapsible-section">`; alternate sections use `section-alt` for the tinted background.
+Each section in `<main>` is a `<section id="..." class="section">`; alternate
+sections use `section-alt` for the tinted background.
 
 ## Design and behaviour notes
 
-- **Theming:** colours, fonts, radii, shadows and max width are CSS custom properties in `:root` at the top of `style.css`. Change the accent colour (`--color-accent`) there to re-theme the site.
+- **Theming:** colours, fonts, radii, shadows and max width are CSS custom
+  properties in `:root` at the top of the inline `<style>` block. Change the
+  accent colour (`--color-accent`, with `--color-accent-2` for gradients) there
+  to re-theme the site.
 - **Fonts:** Inter and Lora, loaded from Google Fonts.
-- **Collapsible sections:** a small inline script at the bottom of `index.html` toggles `data-open` on a section when its title is clicked. This only applies at viewport widths of 768px or less; on desktop all sections are always expanded. Initial state is set with `data-open="true|false"` in the HTML.
-- **Company logos:** Experience and Certifications use `https://logo.clearbit.com/<domain>` images. They fail gracefully (`onerror` hides the image, leaving the initial letter or fallback text), but note that these require an internet connection and Clearbit's logo service may be unreliable.
-- **Responsive:** layout adapts for mobile via media queries in `style.css`.
+- **Dark mode:** a `@media (prefers-color-scheme: dark)` block overrides the
+  colour tokens, so the site adapts to the visitor's OS theme automatically.
+- **Animations:** scroll-reveal (via `IntersectionObserver`), aurora background
+  glows, a gradient/shimmer headline, a hero typing effect, a spinning avatar
+  ring, counting stats (`data-count`), a floating skill-tag cloud, a scroll
+  progress bar and a back-to-top button. All are pure CSS/JS with no
+  dependencies.
+- **Reduced motion:** a `@media (prefers-reduced-motion: reduce)` block (plus a
+  matching JS guard) disables the animations — reveals show immediately, the
+  typing effect shows the first phrase, and counters jump to their final value.
+- **Responsive:** a mobile-first layout with media queries. Grids collapse to a
+  single column on phones, the hero stacks, type scales down and the nav trims
+  trailing links at narrow widths. Verified down to 375px with no horizontal
+  overflow.
+- **Company logos:** Experience and Certifications use Google's favicon service
+  (`https://www.google.com/s2/favicons?domain=<domain>`). They fail gracefully
+  (`onerror` hides the image, leaving the initial-letter fallback), but note
+  they require an internet connection.
 
 ## Updating content
 
-| To change…            | Edit…                                                                 |
+| To change…            | Edit… (inside `index.html`)                                           |
 | --------------------- | --------------------------------------------------------------------- |
 | A job                 | Add or edit a `.timeline-item` block in `#experience`                 |
 | Education             | `.edu-card` blocks in `#education`                                    |
@@ -54,14 +76,14 @@ Contact details and social links appear in two places (hero and footer), so upda
 
 ## Notes
 
-- The nav hides trailing links at narrower widths via `.nav-links li:nth-child(n+N)` rules in `style.css`; adjust these if you add or reorder nav items.
-- Open Graph `og:image` uses a relative path. Some link-preview scrapers need an absolute URL, so change it to the full URL once the site is deployed.
+- The nav hides trailing links at narrower widths via `.nav-links li:nth-child(n+N)` rules in the inline `<style>`; adjust these if you add or reorder nav items.
+- Open Graph `og:image` uses an absolute URL. Some link-preview scrapers need the full URL, which is already set for the CS web space (see below).
 
 ## Deployment
 
-The site is fully static (HTML, CSS, images, a few lines of inline JS) and all
-asset paths are **relative**, so it runs under any path — including a `~user`
-subdirectory — with no build step.
+The site is fully static (one `index.html` plus images) and all asset paths are
+**relative**, so it runs under any path — including a `~user` subdirectory —
+with no build step.
 
 ### Primary target: UW–Madison CS web space (`pages.cs.wisc.edu/~jaideep`)
 
@@ -71,7 +93,7 @@ Files are served from your CS home directory's public web folder (historically
 ```sh
 # From this project folder, copy the site into your CS web directory over SSH.
 # Replace the host with your current CS login host if different.
-scp -r index.html style.css images \
+scp -r index.html images \
     jaideep@best-linux.cs.wisc.edu:~/public_html/
 ```
 
