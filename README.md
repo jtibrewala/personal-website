@@ -12,6 +12,7 @@ personal-website/
 └── images/
     ├── profilepic.jpg     # Hero avatar
     ├── favicon.png
+    ├── podcast-cover.jpg  # Podcast card cover (600px, resized from GCS cover.jpg)
     ├── chicagobooth.png   # Education logos
     ├── wisc.jpg
     └── dilbert.gif        # Closing comic strip
@@ -31,7 +32,7 @@ python3 -m http.server 8000
 
 ## Page sections
 
-Hero → About → Skills → Projects → Experience → Education → Certifications → Writing → Resources → Recommendations → Dilbert comic → Footer/Contact.
+Hero → About → Skills → Projects → Experience → Education → Certifications → Writing (podcast card + Medium articles) → Resources → Recommendations → Dilbert comic → Footer/Contact.
 
 Each section in `<main>` is a `<section id="..." class="section">`; alternate
 sections use `section-alt` for the tinted background.
