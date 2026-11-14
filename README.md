@@ -14,7 +14,7 @@ personal-website/
     ├── favicon.png
     ├── podcast-cover.jpg  # Podcast card cover (600px, resized from GCS cover.jpg)
     ├── chicagobooth.png   # Education logos
-    ├── wisc.jpg
+    ├── uwmadison.jpg
     └── dilbert.gif        # Closing comic strip
 ```
 
