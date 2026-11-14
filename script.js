@@ -1,6 +1,24 @@
   (function () {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    /* ---- Theme toggle (light default; choice persisted in localStorage) ---- */
+    var themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+      var root = document.documentElement;
+      var syncBtn = function () {
+        var dark = root.getAttribute('data-theme') === 'dark';
+        themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+        themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      };
+      themeBtn.addEventListener('click', function () {
+        var dark = root.getAttribute('data-theme') === 'dark';
+        if (dark) { root.removeAttribute('data-theme'); } else { root.setAttribute('data-theme', 'dark'); }
+        try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
+        syncBtn();
+      });
+      syncBtn();
+    }
+
     /* ---- Scroll reveal via IntersectionObserver ---- */
     var revealEls = document.querySelectorAll('.reveal');
     if (reduce || !('IntersectionObserver' in window)) {

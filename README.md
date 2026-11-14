@@ -44,8 +44,7 @@ sections use `section-alt` for the tinted background.
   (`--color-accent`, with `--color-accent-2` for gradients) there to re-theme
   the site.
 - **Fonts:** Inter and Lora, loaded from Google Fonts.
-- **Dark mode:** a `@media (prefers-color-scheme: dark)` block overrides the
-  colour tokens, so the site adapts to the visitor's OS theme automatically.
+- **Dark mode:** light is the default. A nav toggle sets `data-theme="dark"` on `<html>`, which overrides the colour tokens (`:root[data-theme="dark"]` in `style.css`). The choice is saved in `localStorage` and applied by a tiny inline script in `<head>` before first paint. The OS theme is not followed.
 - **Animations:** scroll-reveal (via `IntersectionObserver`), aurora background
   glows, a gradient/shimmer headline, a hero typing effect, a spinning avatar
   ring, counting stats (`data-count`), a floating skill-tag cloud, a scroll
