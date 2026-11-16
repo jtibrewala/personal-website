@@ -4,3 +4,10 @@ tempfile.txt
 .project
 .idea
 archive
+
+# Session notes (Mozart-managed, local only)
+SESSION-NOTES.md
+.last-session.json
+
+# macOS
+.DS_Store
